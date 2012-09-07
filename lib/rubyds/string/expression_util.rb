@@ -1,6 +1,6 @@
 
-# perform checks on strings of symbols
-class SymbolChecker
+# Offers several methods for handling expressions
+class ExpressionUtil
 
   # return true if the given string contains balanced parens, false otherwise
   def balanced_parenthesis? ( parens_string )
@@ -18,7 +18,7 @@ class SymbolChecker
   end
 
   # return true if the given string contains balanced symbols, false otherwise
-  # accepted symbols are: (), [], {}
+  # supported symbols: (), [], {}
   def balanced_symbols? ( symbol_string )
     stack = Stack.new
     symbol_string.chars do |char|
