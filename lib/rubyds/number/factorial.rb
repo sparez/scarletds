@@ -11,13 +11,6 @@ module Rubyds
         self * (self - 1).factorial
       end
 
-      # unary operator, must be used prefixed
-      # return factorial
-      def !
-        return 1 if self == 0
-        self * !(self-1)
-      end
-
     end
 
   end

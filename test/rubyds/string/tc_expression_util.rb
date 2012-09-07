@@ -41,4 +41,29 @@ class TestExpressionUtil < Test::Unit::TestCase
     assert_equal false, eu.balanced_symbols?(TEST_INVALID_SYMBOLS_3)    
   end
 
+  EXPR1_INFIX   = "A + B * C + D".gsub(" ", "")
+  EXPR1_POSTFIX = "A B C * + D +".gsub(" ", "")
+  EXPR2_INFIX   = "(A + B) * (C + D)".gsub(" ", "")
+  EXPR2_POSTFIX = "A B + C D + *".gsub(" ", "")
+  EXPR3_INFIX   = "A * B + C * D".gsub(" ", "")
+  EXPR3_POSTFIX = "A B * C D * +".gsub(" ", "")
+  EXPR4_INFIX   = "A + B + C + D".gsub(" ", "")
+  EXPR4_POSTFIX = "A B + C + D +".gsub(" ", "")
+
+  def test_infix_to_postfix
+    eu = ExpressionUtil.new
+    assert_equal  EXPR1_POSTFIX,  eu.infix_to_postfix(EXPR1_INFIX)
+    assert_equal  EXPR2_POSTFIX,  eu.infix_to_postfix(EXPR2_INFIX)
+    assert_equal  EXPR3_POSTFIX,  eu.infix_to_postfix(EXPR3_INFIX)
+    assert_equal  EXPR4_POSTFIX,  eu.infix_to_postfix(EXPR4_INFIX)
+  end
+
+  POSTFIX = "7 8 + 3 2 + /"
+  RESULT = 3
+
+  def test_evaluate_postfix
+    eu = ExpressionUtil.new
+    assert_equal RESULT, eu.evaluate_postfix(POSTFIX)
+  end
+
 end
