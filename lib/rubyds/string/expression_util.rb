@@ -7,7 +7,7 @@ class ExpressionUtil
     stack = Stack.new
     parens_string.chars do |char|
       if char == "("
-        stack.push(char) 
+        stack.push(char)
       elsif char == ")"
         popped = stack.pop if char == ")"
         return false if popped == nil
@@ -38,8 +38,9 @@ class ExpressionUtil
   end
 
   # convert an infix notation expression to its postfix equivalent
-  # this implementation does not support spaces within the expression
+  # spaces are skipped and not included in the postfix variant
   def infix_to_postfix(infix)
+    infix = infix.gsub(" ", "")
     symstack = Stack.new
     postfix = ""
     infix.chars do |token|
@@ -82,7 +83,7 @@ class ExpressionUtil
   # spaces are skipped
   # example: 7 8 + 3 2 + /
   def evaluate_postfix(postfix)
-    postfix = postfix.gsub(" ", "")
+    postfix = postfix.gsub(" ", "") # remove spaces and get a new string
     operands = Stack.new
     postfix.chars do |token|
       if not operator?(token)

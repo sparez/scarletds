@@ -1,4 +1,6 @@
 
+require 'rubyds/basic/deque'
+
 # perform different checks on a string
 # - anagram
 # - palyndrome
@@ -27,10 +29,23 @@ class StringChecker
     end
   end
 
-  # return true if the given string is a palyndrome
+  # true if the given string is a palyndrome, false otherwise
   def palyndrome?(str)
     (0..( (str.size - 1) / 2 )).each do |i|
       return false if str[i] != str[ str.size - 1 - i ]
+    end
+    true
+  end
+
+  # true if the given string is a palyndrome, false otherwise
+  # this implementation uses a deque
+  def palyndrome_deque?(str)
+    dq = Deque.new
+    str.chars do |char|
+      dq.enqueue_rear char
+    end
+    while dq.size > 1
+      return false if dq.dequeue_front != dq.dequeue_rear
     end
     true
   end

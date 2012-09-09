@@ -25,6 +25,13 @@ class TestStringChecker < Test::Unit::TestCase
     assert_equal  true,   @sc.palyndrome?( RADAR )
   end
 
+  def test_palyndrome_deque
+    assert_equal  true,   @sc.palyndrome_deque?( OTTO )
+    assert_equal  false,  @sc.palyndrome_deque?( HARRY )
+    assert_equal  true,   @sc.palyndrome_deque?( ANNA )
+    assert_equal  true,   @sc.palyndrome_deque?( RADAR )    
+  end
+
   # test anagram? method with default algorithm
   def test_anagram_default
     assert_equal  true,   @sc.anagram?( EARTH, HEART )

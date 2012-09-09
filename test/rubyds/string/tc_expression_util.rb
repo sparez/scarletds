@@ -41,13 +41,13 @@ class TestExpressionUtil < Test::Unit::TestCase
     assert_equal false, eu.balanced_symbols?(TEST_INVALID_SYMBOLS_3)    
   end
 
-  EXPR1_INFIX   = "A + B * C + D".gsub(" ", "")
+  EXPR1_INFIX   = "A + B * C + D"
   EXPR1_POSTFIX = "A B C * + D +".gsub(" ", "")
-  EXPR2_INFIX   = "(A + B) * (C + D)".gsub(" ", "")
+  EXPR2_INFIX   = "(A + B) * (C + D)"
   EXPR2_POSTFIX = "A B + C D + *".gsub(" ", "")
-  EXPR3_INFIX   = "A * B + C * D".gsub(" ", "")
+  EXPR3_INFIX   = "A * B + C * D"
   EXPR3_POSTFIX = "A B * C D * +".gsub(" ", "")
-  EXPR4_INFIX   = "A + B + C + D".gsub(" ", "")
+  EXPR4_INFIX   = "A + B + C + D"
   EXPR4_POSTFIX = "A B + C + D +".gsub(" ", "")
 
   def test_infix_to_postfix
