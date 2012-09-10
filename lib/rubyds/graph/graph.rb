@@ -35,11 +35,6 @@ class Graph
     @vertices.keys
   end
 
-  # # true if the given vertex is in the graph, false otherwise
-  # def include?( vertex )
-  #   @vertices.include? vertex.key
-  # end
-
   def each
     @vertices.keys.each do |key|
       yield @vertices[key]
