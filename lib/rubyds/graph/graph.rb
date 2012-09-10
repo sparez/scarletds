@@ -1,4 +1,4 @@
-# require 'pry'
+
 # simple Graph implementation
 class Graph
 
@@ -53,8 +53,6 @@ class Vertex
 
   attr_reader :key
 
-  attr_reader :connected_to
-
   # create a new vertex with the given key
   def initialize( key )
     @key = key
@@ -85,5 +83,3 @@ class Vertex
   end
 
 end
-
-# binding.pry
