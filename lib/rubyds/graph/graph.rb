@@ -63,7 +63,12 @@ class Graph
       current.black!
       yield current if block_given?
     end
-    # cleanup vertices after bfs
+    # clean up vertices attributes set during bfs
+    @vertices.keys.each do |key|
+      @vertices[key].distance = nil
+      @vertices[key].predecessor = nil
+      @vertices[key].color = nil
+    end
   end  
 
 end
