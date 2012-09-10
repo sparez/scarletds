@@ -1,4 +1,8 @@
 
+require 'rubyds/basic/queue'
+
+#require 'pry'
+
 # simple Graph implementation
 class Graph
 
@@ -41,12 +45,38 @@ class Graph
     end
   end
 
+  # perform a BFS traversal of this graph given a starting vertex
+  def bfs( start, &block )
+    start.distance = 0
+    start.predecessor = nil
+    start.gray!
+    vq = Queue.new()
+    vq.enqueue(start)
+    while vq.size > 0
+      current = vq.dequeue()
+      current.get_connections.each  do |nbr|
+        if nbr.white?
+          nbr.gray!
+          nbr.distance = current.distance + 1
+          nbr.predecessor = current
+          vq.enqueue(nbr)
+        end
+      end
+      current.black!
+      yield current if block_given?
+    end
+    # cleanup vertices after bfs
+  end  
+
 end
 
 # simple graph Vertex implementation
 class Vertex
 
   attr_reader :key
+
+  # bfs additions
+  attr_accessor   :distance, :predecessor, :color
 
   # create a new vertex with the given key
   def initialize( key )
@@ -77,4 +107,53 @@ class Vertex
     return key.to_s + " connected to: " + connections
   end
 
+  # bfs additions
+
+  def white!
+    self.color = :white
+  end
+
+  def white?
+    @color == nil || @color == :white
+  end
+
+  def gray!
+    self.color = :gray
+  end
+
+  def gray?
+    @color == :gray
+  end
+
+  def black!
+    self.color = :black
+  end
+
+  def black
+    @color == :black
+  end
+
 end
+
+
+g = Graph.new
+
+# add vertices 0 to 5
+(0...6).each do |key|
+  g.add_vertex key
+end
+
+# add edges
+g.add_edge(0,1,5)
+g.add_edge(0,5,2)
+g.add_edge(1,2,4)
+g.add_edge(2,3,9)
+g.add_edge(3,4,7)
+g.add_edge(3,5,3)
+g.add_edge(4,0,1)
+g.add_edge(5,4,8)
+g.add_edge(5,2,1)
+
+v0 = g.get_vertex(0)
+
+g.bfs(v0) { |v| puts v.key }

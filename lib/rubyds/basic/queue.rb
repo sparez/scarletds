@@ -4,18 +4,18 @@ class Queue
 
   # create a new empty queue
   def initialize
-    @items = []
+    @items = Array.new
   end
 
   # add an element to the queue
   def enqueue(item)
-    @items[@items.size] = item
+    @items.push item
   end
 
   # remove an element from the queue returning it
   # if the queue is empty return nil
   def dequeue
-    @items.delete_at(0)
+    @items.shift
   end
 
   # true if the queue is empty, false otherwise

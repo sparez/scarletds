@@ -50,4 +50,36 @@ class TestGraph < Test::Unit::TestCase
     assert_equal  1, vertex5.get_weight(vertex2)
   end
 
+  def test_bfs
+    g = Graph.new
+    
+    # add vertices 0 to 5
+    (0...6).each do |key|
+      assert g.add_vertex key
+    end
+
+    # add edges
+    g.add_edge(0,1,5)
+    g.add_edge(0,5,2)
+    g.add_edge(1,2,4)
+    g.add_edge(2,3,9)
+    g.add_edge(3,4,7)
+    g.add_edge(3,5,3)
+    g.add_edge(4,0,1)
+    g.add_edge(5,4,8)
+    g.add_edge(5,2,1)
+
+    assert  vertex0 = g.get_vertex(0)
+    assert  vertex1 = g.get_vertex(1)
+    assert  vertex2 = g.get_vertex(2)
+    assert  vertex3 = g.get_vertex(3)
+    assert  vertex4 = g.get_vertex(4)
+    assert  vertex5 = g.get_vertex(5)
+
+    # bfs starting from 0 has expected sequence: 0, 1, 5, 2, 4, 3
+    sequence = []
+    g.bfs(vertex0) { |v| sequence.push v.key }
+    assert_equal [0,1,5,2,4,3], sequence
+  end
+
 end
