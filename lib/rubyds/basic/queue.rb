@@ -9,13 +9,13 @@ class Queue
 
   # add an element to the queue
   def enqueue(item)
-    @items.push item
+    @items[ @items.size ] = item
   end
 
   # remove an element from the queue returning it
   # if the queue is empty return nil
   def dequeue
-    @items.shift
+    @items.delete_at(0)
   end
 
   # true if the queue is empty, false otherwise

@@ -1,8 +1,6 @@
 
 require 'rubyds/basic/queue'
 
-#require 'pry'
-
 # simple Graph implementation
 class Graph
 
@@ -134,26 +132,3 @@ class Vertex
   end
 
 end
-
-
-g = Graph.new
-
-# add vertices 0 to 5
-(0...6).each do |key|
-  g.add_vertex key
-end
-
-# add edges
-g.add_edge(0,1,5)
-g.add_edge(0,5,2)
-g.add_edge(1,2,4)
-g.add_edge(2,3,9)
-g.add_edge(3,4,7)
-g.add_edge(3,5,3)
-g.add_edge(4,0,1)
-g.add_edge(5,4,8)
-g.add_edge(5,2,1)
-
-v0 = g.get_vertex(0)
-
-g.bfs(v0) { |v| puts v.key }
