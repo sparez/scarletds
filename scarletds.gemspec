@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.version     = Scarletds::VERSION
   s.date        = '2012-09-04'
   s.summary     = "ScarletDS - Little Collection of Ruby Algorithms and Data Structures"
-  s.description = "A collection of algorithms and data structures in ruby"
+  s.description = "Simple private collection of data structures, algorithms and other little experiments in Ruby"
   s.authors     = ["Reza Marvan Spagnolo"]
   s.email       = 'marvans@gmail.com'
   s.homepage    = 'http://rubygems.org/gems/scarletds'
