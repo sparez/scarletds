@@ -1,14 +1,13 @@
 module Rubyds
   module Number
 
-    # mixin for adding factorial behavior to a class
-    # supporting operators: ==, * and -
+    # mixin for Integer class
     module Factorial
 
       # return factorial
       def factorial
         return 1 if self == 0
-        self * (self - 1).factorial
+        1.upto(self).inject(:*)
       end
 
     end

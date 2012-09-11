@@ -9,6 +9,7 @@ class Graph
   # create a new empty graph
   def initialize
     @vertices = {} # empty hash
+    @time = 0 # timing instance variable for DFS traversal
   end
 
   # add a vertex to the graph
@@ -69,7 +70,46 @@ class Graph
       @vertices[key].predecessor = nil
       @vertices[key].color = nil
     end
-  end  
+  end
+
+  # initializes graph for dfs traversal
+  def init_dfs
+    # init vertices
+    @vertices.values.each do |vertex|
+      vertex.white!
+      vertex.predecessor = nil
+    end
+    @time = 0
+  end
+
+  # perform DFS traversal of this graph given a starting vertex
+  def dfs(start_vertex, &block)
+    start_vertex.gray!
+    @time += 1
+    start_vertex.discovery = @time
+    start_vertex.get_connections.each do |next_vertex|
+      if next_vertex.white?
+        next_vertex.predecessor = start_vertex
+        dfs(next_vertex, &block)
+      end
+    end
+    start_vertex.black!
+    @time += 1
+    start_vertex.finish = @time
+    yield start_vertex if block_given?
+  end
+
+  # clean up graph after DFS traversal
+  def cleanup_dfs
+    # clean up vertices attributes set during dfs
+    @vertices.values.each do |vertex|
+      vertex.color = nil
+      vertex.predecessor = nil
+      vertex.discovery = nil
+      vertex.finish = nil
+    end
+    @time = 0
+  end
 
 end
 
@@ -80,6 +120,9 @@ class Vertex
 
   # bfs additions
   attr_accessor   :distance, :predecessor, :color
+
+  # dfs additions
+  attr_accessor :discovery, :finish
 
   # create a new vertex with the given key
   def initialize( key )
@@ -110,7 +153,7 @@ class Vertex
     return key.to_s + " connected to: " + connections
   end
 
-  # bfs additions
+  # bfs and dfs additions
 
   def white!
     self.color = :white
