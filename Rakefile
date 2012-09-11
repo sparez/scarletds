@@ -1,4 +1,4 @@
-# rubyds rake build script
+# scarletds rake build script
 # Author:: Reza Marvan Spagnolo
 # License:: see LICENSE
 

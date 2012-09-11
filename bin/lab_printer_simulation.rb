@@ -4,7 +4,7 @@
 # run the lab printer simulator
 #
 
-require 'rubyds/simulation/lab_printer_simulator'
+require 'scarletds/simulation/lab_printer_simulator'
 
 # on average, a print task every 180 seconds
 print_task_probability = 1.0 / 180
