@@ -4,9 +4,11 @@
 # any put operation will fail after reaching such limit
 # it is very limited as every bucket contains only one element
 # and resizing is not implemented yet.
+#
+# TODO: implement resizing
+# TODO: replace readers with Enumerable
 class HashTable
 
-  # TODO: replace readers with Enumerable
   attr_reader :slots, :values
 
   def initialize( size = 11 )

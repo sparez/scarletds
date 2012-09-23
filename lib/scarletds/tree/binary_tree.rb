@@ -1,5 +1,5 @@
 
-# BinaryTree (node) implementation
+# BinaryTree (node based) implementation
 class BinaryTree
 
   attr_accessor :item
