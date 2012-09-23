@@ -11,17 +11,22 @@ class Stack
   def push(item)
     @top += 1
     @items[ @top ] = item
-    #@items.push item
+    # instead of:
+    # @items.push item
   end
 
   def pop
     item = @items.delete_at @top
     @top -= 1 if item != nil
     item
+    # instead of:
+    # @items.pop
   end
 
   def peek
     @items[@top]
+    # instead of
+    # @items.last
   end
 
   def empty?
